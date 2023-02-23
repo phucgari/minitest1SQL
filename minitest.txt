@@ -25,7 +25,7 @@ values
 create table Students (
 id int not null,
 fullname varchar(255),
-address_id varchar(255),
+address_id int,
 age int,
 phone int unique,
 classes_id varchar(255)
