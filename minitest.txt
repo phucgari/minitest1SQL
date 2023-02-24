@@ -1,6 +1,6 @@
 create schema student_management;
 use student_management;
-drop table Address;
+-- drop table Address;
 create table Address(
 id int auto_increment,
 address varchar(255),
@@ -13,7 +13,7 @@ values
 ("Đà Nẵng"),
 ("Cần thơ"),
 ("Hải Phòng");
-drop table classes;
+-- drop table classes;
 create table Classes(
 id int auto_increment, 
 name varchar(255),
@@ -28,7 +28,7 @@ values
 ("lop 3","Ned","ok"),
 ("lop 4","China","hard"),
 ("lop 5","VN","very hard");
-drop table students;
+-- drop table students;
 create table Students (
 id int auto_increment,
 fullname varchar(255),
@@ -52,7 +52,7 @@ values
 ("anh",03,11,0774,02),
 ("nguyen",04,66,01994,04),
 ("hieu",05,44,04334,03);
-drop table course;
+-- drop table course;
 create table Course (
 id int auto_increment,
 name varchar(255),
@@ -66,7 +66,7 @@ values
 ("B1",'medium'),
 ("B2",'ok'),
 ("c","hard");
-drop table point;
+-- drop table point;
 create table Point(
 id int auto_increment,
 course_id int not null,
@@ -74,7 +74,7 @@ student_id int not null,
 point int,
 primary key (id),
 foreign key (course_id) references course(id),
-foreign key (student_id) references student(id)
+foreign key (student_id) references students(id)
 );
 insert into Point(course_id, student_id, point)
 values 
@@ -93,6 +93,7 @@ values
 (03,13,55),
 (04,14,66),
 (05,15,33);
+
 SELECT *
 FROM students
 WHERE fullname LIKE '%nguyen%';
@@ -105,3 +106,8 @@ WHERE age BETWEEN 15 AND 18;
 SELECT *
 FROM students 
 WHERE age=12 or age=13;
+select count(*) from students where classes_id like 4;
+select count(*) from students where address_id like 6;
+select max(`avg(point)`) from
+(select course_id, avg(point) from point group by course_id) as T;
+select course_id, avg(point) from point group by course_id;
